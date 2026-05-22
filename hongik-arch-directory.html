@@ -169,14 +169,12 @@
   <div class="modal">
     <div class="modal-header black"><h2>✏️ 회원 등록</h2><button class="btn-close" onclick="closeModal('overlayRegister')">✕</button></div>
     <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group"><label>이름 <span class="req">★ 필수</span></label><input type="text" id="f_name" placeholder="홍길동"></div>
-        <div class="form-group"><label>학번 <span class="req">★ 필수</span></label><input type="text" id="f_sno" placeholder="예: 85"></div>
+      <div class="form-group"><label>이름 <span class="req">★ 필수</span></label><input type="text" id="f_name" placeholder="홍길동"></div>
+      <div class="form-group"><label>전공 <span class="req">★ 필수</span></label>
+        <select id="f_major" onchange="toggleCustomMajor('f')"><option value="">-- 선택 --</option><option>건축학</option><option>건축공학</option><option>실내건축학</option><option>건축도시대학원</option><option>일반대학원</option><option value="기타">기타 (직접 입력)</option></select>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>전공 <span class="req">★ 필수</span></label>
-          <select id="f_major" onchange="toggleCustomMajor('f')"><option value="">-- 선택 --</option><option>건축학</option><option>건축공학</option><option>실내건축학</option><option>건축도시대학원</option><option>일반대학원</option><option value="기타">기타 (직접 입력)</option></select>
-        </div>
+        <div class="form-group"><label>학번 <span class="req">★ 필수</span></label><input type="text" id="f_sno" placeholder="예: 85"></div>
         <div class="form-group"><label>전화번호 <span class="req">★ 필수</span></label><input type="tel" id="f_phone" placeholder="010-0000-0000"></div>
       </div>
       <div class="form-group" id="f_customWrap" style="display:none"><label>전공 직접 입력 <span class="req">★</span></label><input type="text" id="f_customMajor" placeholder="전공명을 입력하세요"></div>
