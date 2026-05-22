@@ -180,6 +180,22 @@
       <div class="form-group" id="f_customWrap" style="display:none"><label>전공 직접 입력 <span class="req">★</span></label><input type="text" id="f_customMajor" placeholder="전공명을 입력하세요"></div>
       <div class="form-group"><label>직장 / 직함</label><input type="text" id="f_company" placeholder="예: (주)홍익건축 대표이사"></div>
       <div class="form-group"><label>출생년도</label><input type="text" id="f_birth" placeholder="예: 1965"></div>
+
+      <!-- 개인정보 수집 동의 -->
+      <div style="background:#f9f7f4;border:1.5px solid #e0e0e0;border-radius:8px;padding:16px;margin-bottom:16px;">
+        <p style="font-size:12px;font-weight:700;color:#333;margin-bottom:8px;letter-spacing:0.5px;">📋 개인정보 수집 및 이용 동의</p>
+        <p style="font-size:12px;color:#666;line-height:1.8;">
+          <strong>수집 항목:</strong> 이름, 전공, 학번, 전화번호, 직장/직함, 출생년도<br>
+          <strong>수집 목적:</strong> 홍익건축 총동문회 회원 명부 관리<br>
+          <strong>보유 기간:</strong> 회원 탈퇴 또는 동의 철회 시까지<br>
+          <strong>제3자 제공:</strong> 동문회 내부 용도로만 사용하며 외부 제공 없음
+        </p>
+        <div style="margin-top:12px;display:flex;align-items:center;gap:8px;">
+          <input type="checkbox" id="f_agree" style="width:16px;height:16px;accent-color:#D10000;cursor:pointer;">
+          <label for="f_agree" style="font-size:13px;font-weight:700;color:#D10000;cursor:pointer;">위 내용에 동의합니다 (필수)</label>
+        </div>
+      </div>
+
       <button class="btn-submit red" id="submitBtn" onclick="addMember()">등 록 하 기</button>
     </div>
   </div>
@@ -297,6 +313,7 @@
     const company=document.getElementById('f_company').value.trim();
     const birth=document.getElementById('f_birth').value.trim();
     if (!name||!sno||!major||!phone) { showToast('⚠️ 이름, 학번, 전공, 전화번호는 필수입니다!'); return; }
+    if (!document.getElementById('f_agree').checked) { showToast('⚠️ 개인정보 수집 및 이용에 동의해주세요!'); return; }
     const btn=document.getElementById('submitBtn');
     btn.disabled=true; btn.textContent='등록 중...';
     try {
@@ -409,6 +426,7 @@
       ['f_name','f_sno','f_phone','f_company','f_birth','f_customMajor'].forEach(i => document.getElementById(i).value = '');
       document.getElementById('f_major').value = '';
       document.getElementById('f_customWrap').style.display = 'none';
+      document.getElementById('f_agree').checked = false;
     }
     if (id === 'overlayEdit') {
       document.getElementById('e_customWrap').style.display = 'none';
