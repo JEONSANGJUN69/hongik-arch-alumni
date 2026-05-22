@@ -14,6 +14,7 @@
     --gray2: #e0e0e0;
     --muted: #888;
     --text: #1a1a1a;
+    --green: #1d6f42;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Noto Sans KR', sans-serif; background: var(--gray); color: var(--text); min-height: 100vh; }
@@ -25,25 +26,25 @@
   .header-title h1 { font-family: 'Noto Serif KR', serif; font-size: 18px; font-weight: 700; color: var(--white); letter-spacing: 2px; }
   .header-title p { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 1px; margin-top: 2px; }
   .header-count { background: var(--red); color: white; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; }
+  .btn-admin-toggle { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); padding: 7px 14px; border-radius: 8px; font-size: 12px; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: all 0.2s; }
+  .btn-admin-toggle:hover, .btn-admin-toggle.active { background: var(--red); color: white; border-color: var(--red); }
 
   .toolbar { background: var(--white); padding: 16px 40px; display: flex; gap: 12px; align-items: center; border-bottom: 2px solid var(--red); flex-wrap: wrap; }
   .search-wrap { position: relative; flex: 1; min-width: 200px; }
   .search-wrap input { width: 100%; padding: 10px 16px 10px 40px; border: 1.5px solid var(--gray2); border-radius: 8px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; outline: none; transition: border-color 0.2s; background: var(--gray); }
   .search-wrap input:focus { border-color: var(--red); background: white; }
   .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 16px; }
-  .btn-register { background: var(--red); color: white; border: none; padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 700; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-  .btn-register:hover { background: #b80000; }
-  .btn-refresh { background: var(--black); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-  .btn-refresh:hover { background: #333; }
-  .btn-excel { background: #1d6f42; color: white; border: none; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-  .btn-excel:hover { background: #155233; }
+  .btn { border: none; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .btn-red { background: var(--red); color: white; } .btn-red:hover { background: #b80000; }
+  .btn-black { background: var(--black); color: white; } .btn-black:hover { background: #333; }
+  .btn-green { background: var(--green); color: white; } .btn-green:hover { background: #155233; }
 
   .stats { display: flex; background: var(--white); border-bottom: 1px solid var(--gray2); padding: 0 40px; overflow-x: auto; }
   .stat-item { padding: 14px 28px; text-align: center; border-right: 1px solid var(--gray2); min-width: 100px; }
   .stat-item:last-child { border-right: none; }
   .stat-num { font-size: 24px; font-weight: 900; color: var(--black); line-height: 1; }
   .stat-num.red { color: var(--red); }
-  .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; letter-spacing: 0.5px; }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
 
   .table-wrap { margin: 24px 40px; background: var(--white); border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); overflow: hidden; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -52,46 +53,56 @@
   thead th:first-child { border-left: 3px solid var(--red); }
   tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
   tbody tr:hover { background: #fff5f5; }
-  tbody tr:last-child { border-bottom: none; }
-  td { padding: 13px 18px; vertical-align: middle; }
-  td:first-child { font-weight: 700; color: var(--black); }
+  td { padding: 12px 18px; vertical-align: middle; }
+  td:nth-child(2) { font-weight: 700; }
   .major-badge { display: inline-block; background: var(--black); color: white; font-size: 11px; padding: 3px 10px; border-radius: 4px; }
+  .btn-sm { border: none; padding: 5px 11px; border-radius: 6px; font-size: 12px; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: all 0.15s; font-weight: 600; }
+  .btn-edit { background: #e8f0fe; color: #1a56db; } .btn-edit:hover { background: #1a56db; color: white; }
+  .btn-del { background: #fde8e8; color: var(--red); } .btn-del:hover { background: var(--red); color: white; }
+
+  .loading { text-align: center; padding: 60px; color: var(--muted); }
+  .spinner { display: inline-block; width: 32px; height: 32px; border: 3px solid var(--gray2); border-top-color: var(--red); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 12px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
   .empty-state { text-align: center; padding: 80px 20px; color: var(--muted); }
   .empty-icon { font-size: 56px; margin-bottom: 16px; opacity: 0.4; }
   .empty-state p { font-size: 15px; line-height: 1.8; }
-  .loading { text-align: center; padding: 60px; color: var(--muted); font-size: 15px; }
-  .spinner { display: inline-block; width: 32px; height: 32px; border: 3px solid var(--gray2); border-top-color: var(--red); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 12px; }
-  @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* 모달 공통 */
   .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; }
   .overlay.active { display: flex; }
   .modal { background: white; border-radius: 16px; width: 480px; max-width: 95vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
-  .modal-header { background: var(--black); color: white; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; border-radius: 16px 16px 0 0; border-left: 4px solid var(--red); }
+  .modal-header { color: white; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; border-radius: 16px 16px 0 0; }
+  .modal-header.black { background: var(--black); border-left: 4px solid var(--red); }
+  .modal-header.red { background: var(--red); border-left: 4px solid #800000; }
   .modal-header h2 { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
-  .btn-close { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 22px; cursor: pointer; }
-  .btn-close:hover { color: white; }
+  .btn-close { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 22px; cursor: pointer; } .btn-close:hover { color: white; }
   .modal-body { padding: 28px; }
-  .form-group { margin-bottom: 20px; }
+  .form-group { margin-bottom: 18px; }
   .form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 7px; }
-  .form-group label .req { color: var(--red); margin-left: 2px; }
+  .form-group label .req { color: var(--red); }
   .form-group input, .form-group select { width: 100%; padding: 11px 14px; border: 1.5px solid var(--gray2); border-radius: 8px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; color: var(--text); background: var(--gray); outline: none; transition: border-color 0.2s; }
   .form-group input:focus, .form-group select:focus { border-color: var(--red); background: white; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .btn-submit { width: 100%; padding: 14px; background: var(--red); color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: background 0.2s; letter-spacing: 1px; margin-top: 4px; }
-  .btn-submit:hover { background: #b80000; }
-  .btn-submit:disabled { background: var(--muted); cursor: not-allowed; }
+  .btn-submit { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: background 0.2s; letter-spacing: 1px; margin-top: 4px; }
+  .btn-submit.red { background: var(--red); color: white; } .btn-submit.red:hover { background: #b80000; }
+  .btn-submit.blue { background: #1a56db; color: white; } .btn-submit.blue:hover { background: #1344b0; }
+  .btn-submit:disabled { background: var(--muted) !important; cursor: not-allowed; }
+
+  /* 관리자 로그인 배너 */
+  .admin-bar { display: none; background: #1a1a2e; color: white; padding: 10px 40px; font-size: 13px; align-items: center; gap: 12px; }
+  .admin-bar.show { display: flex; }
+  .admin-bar span { color: #f0c040; font-weight: 700; }
 
   .toast { position: fixed; bottom: 32px; right: 32px; background: var(--black); color: white; padding: 14px 22px; border-radius: 10px; font-size: 14px; border-left: 4px solid var(--red); box-shadow: 0 8px 24px rgba(0,0,0,0.2); transform: translateY(80px); opacity: 0; transition: all 0.3s ease; z-index: 300; }
   .toast.show { transform: translateY(0); opacity: 1; }
 
   @media (max-width: 768px) {
     header { padding: 0 16px; height: 64px; }
-    .header-title h1 { font-size: 14px; }
+    .header-title h1 { font-size: 13px; }
     .toolbar { padding: 12px 16px; }
     .stats { padding: 0 16px; }
-    .stat-item { padding: 12px 14px; min-width: 80px; }
     .table-wrap { margin: 16px; }
-    thead th, td { padding: 10px 10px; font-size: 12px; }
+    thead th, td { padding: 9px 10px; font-size: 12px; }
   }
 </style>
 </head>
@@ -111,16 +122,23 @@
     <p>HONGIK ARCHITECTURE ALUMNI DIRECTORY</p>
   </div>
   <div class="header-count" id="headerCount">불러오는 중...</div>
+  <button class="btn-admin-toggle" id="adminToggle" onclick="toggleAdminLogin()">🔐 관리자</button>
 </header>
+
+<!-- 관리자 로그인 상태 표시 -->
+<div class="admin-bar" id="adminBar">
+  <span>🔓 관리자 모드</span> — 회원 수정 및 삭제가 가능합니다.
+  <button onclick="logoutAdmin()" style="margin-left:auto;background:rgba(255,255,255,0.15);border:none;color:white;padding:5px 12px;border-radius:6px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-size:12px;">로그아웃</button>
+</div>
 
 <div class="toolbar">
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
     <input type="text" id="searchInput" placeholder="이름, 학번, 전공, 직장 검색..." oninput="render()">
   </div>
-  <button class="btn-register" onclick="openModal()">＋ 회원 등록</button>
-  <button class="btn-refresh" onclick="loadMembers()">🔄 새로고침</button>
-  <button class="btn-excel" onclick="exportCSV()">📥 CSV 저장</button>
+  <button class="btn btn-red" onclick="openModal('register')">＋ 회원 등록</button>
+  <button class="btn btn-black" onclick="loadMembers()">🔄 새로고침</button>
+  <button class="btn btn-green" onclick="exportExcel()">📥 엑셀 저장</button>
 </div>
 
 <div class="stats">
@@ -131,21 +149,11 @@
 </div>
 
 <div class="table-wrap">
-  <div class="loading" id="loadingState">
-    <div class="spinner"></div>
-    <p>명부를 불러오는 중입니다...</p>
-  </div>
+  <div class="loading" id="loadingState"><div class="spinner"></div><p>명부를 불러오는 중...</p></div>
   <table id="mainTable" style="display:none">
     <thead>
       <tr>
-        <th>#</th>
-        <th>이름 ★</th>
-        <th>전공 ★</th>
-        <th>학번 ★</th>
-        <th>전화번호 ★</th>
-        <th>직장 / 직함</th>
-        <th>출생년도</th>
-        <th>등록일시</th>
+        <th>#</th><th>이름</th><th>전공</th><th>학번</th><th>전화번호</th><th>직장/직함</th><th>출생년도</th><th>등록일시</th><th id="adminCol" style="display:none">관리</th>
       </tr>
     </thead>
     <tbody id="tableBody"></tbody>
@@ -156,48 +164,58 @@
   </div>
 </div>
 
-<div class="overlay" id="overlay" onclick="closeModalOutside(event)">
+<!-- 회원 등록 모달 -->
+<div class="overlay" id="overlayRegister" onclick="closeModalOutside(event,'overlayRegister')">
   <div class="modal">
-    <div class="modal-header">
-      <h2>✏️ 회원 등록</h2>
-      <button class="btn-close" onclick="closeModal()">✕</button>
-    </div>
+    <div class="modal-header black"><h2>✏️ 회원 등록</h2><button class="btn-close" onclick="closeModal('overlayRegister')">✕</button></div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group">
-          <label>이름 <span class="req">★ 필수</span></label>
-          <input type="text" id="f_name" placeholder="홍길동">
-        </div>
-        <div class="form-group">
-          <label>학번 <span class="req">★ 필수</span></label>
-          <input type="text" id="f_sno" placeholder="예: 85">
-        </div>
+        <div class="form-group"><label>이름 <span class="req">★ 필수</span></label><input type="text" id="f_name" placeholder="홍길동"></div>
+        <div class="form-group"><label>학번 <span class="req">★ 필수</span></label><input type="text" id="f_sno" placeholder="예: 85"></div>
       </div>
       <div class="form-row">
-        <div class="form-group">
-          <label>전공 <span class="req">★ 필수</span></label>
-          <select id="f_major">
-            <option value="">-- 선택 --</option>
-            <option value="건축학과">건축학과</option>
-            <option value="건축공학과">건축공학과</option>
-            <option value="실내건축학과">실내건축학과</option>
-            <option value="기타">기타</option>
-          </select>
+        <div class="form-group"><label>전공 <span class="req">★ 필수</span></label>
+          <select id="f_major"><option value="">-- 선택 --</option><option>건축학과</option><option>건축공학과</option><option>실내건축학과</option><option>기타</option></select>
         </div>
-        <div class="form-group">
-          <label>전화번호 <span class="req">★ 필수</span></label>
-          <input type="tel" id="f_phone" placeholder="010-0000-0000">
+        <div class="form-group"><label>전화번호 <span class="req">★ 필수</span></label><input type="tel" id="f_phone" placeholder="010-0000-0000"></div>
+      </div>
+      <div class="form-group"><label>직장 / 직함</label><input type="text" id="f_company" placeholder="예: (주)홍익건축 대표이사"></div>
+      <div class="form-group"><label>출생년도</label><input type="text" id="f_birth" placeholder="예: 1965"></div>
+      <button class="btn-submit red" id="submitBtn" onclick="addMember()">등 록 하 기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 관리자 로그인 모달 -->
+<div class="overlay" id="overlayAdmin" onclick="closeModalOutside(event,'overlayAdmin')">
+  <div class="modal" style="width:360px">
+    <div class="modal-header red"><h2>🔐 관리자 로그인</h2><button class="btn-close" onclick="closeModal('overlayAdmin')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label>비밀번호</label><input type="password" id="adminPw" placeholder="관리자 비밀번호 입력" onkeydown="if(event.key==='Enter')doAdminLogin()"></div>
+      <button class="btn-submit red" onclick="doAdminLogin()">로 그 인</button>
+    </div>
+  </div>
+</div>
+
+<!-- 수정 모달 -->
+<div class="overlay" id="overlayEdit" onclick="closeModalOutside(event,'overlayEdit')">
+  <div class="modal">
+    <div class="modal-header" style="background:#1a56db;border-left:4px solid #0d2f7a"><h2>✏️ 회원 정보 수정</h2><button class="btn-close" onclick="closeModal('overlayEdit')">✕</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="e_origName"><input type="hidden" id="e_origSno">
+      <div class="form-row">
+        <div class="form-group"><label>이름 <span class="req">★</span></label><input type="text" id="e_name"></div>
+        <div class="form-group"><label>학번 <span class="req">★</span></label><input type="text" id="e_sno"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>전공 <span class="req">★</span></label>
+          <select id="e_major"><option value="">-- 선택 --</option><option>건축학과</option><option>건축공학과</option><option>실내건축학과</option><option>기타</option></select>
         </div>
+        <div class="form-group"><label>전화번호 <span class="req">★</span></label><input type="tel" id="e_phone"></div>
       </div>
-      <div class="form-group">
-        <label>직장 / 직함</label>
-        <input type="text" id="f_company" placeholder="예: (주)홍익건축 대표이사">
-      </div>
-      <div class="form-group">
-        <label>출생년도</label>
-        <input type="text" id="f_birth" placeholder="예: 1965">
-      </div>
-      <button class="btn-submit" id="submitBtn" onclick="addMember()">등 록 하 기</button>
+      <div class="form-group"><label>직장 / 직함</label><input type="text" id="e_company"></div>
+      <div class="form-group"><label>출생년도</label><input type="text" id="e_birth"></div>
+      <button class="btn-submit blue" id="editBtn" onclick="updateMember()">수 정 완 료</button>
     </div>
   </div>
 </div>
@@ -205,38 +223,38 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const API = 'https://script.google.com/macros/s/AKfycbwz8LApU-ZurcTkkdIgRoBPttzZZ4SGRDswJ4PgJAiP73LGGiqJd3gFFxCqSwh1g5pZRQ/exec';
+  const API = 'https://script.google.com/macros/s/AKfycbwAW03xAJfdXEKmdHzBXVoOJnNPSdXKb1h6Sij6dS6YNULqTWLbx5GbNFrousuxGwrY0w/exec';
   let members = [];
+  let isAdmin = false;
 
-  // ── 데이터 불러오기
+  // ── 데이터 로드
   async function loadMembers() {
     document.getElementById('loadingState').style.display = 'block';
     document.getElementById('mainTable').style.display = 'none';
     document.getElementById('emptyState').style.display = 'none';
     try {
-      const res = await fetch(API);
+      const res = await fetch(API + '?t=' + Date.now());
       const data = await res.json();
       members = data.members || [];
       render();
     } catch(err) {
-      showToast('⚠️ 데이터를 불러오지 못했습니다. 새로고침 해주세요.');
+      showToast('⚠️ 데이터를 불러오지 못했습니다.');
       document.getElementById('loadingState').style.display = 'none';
     }
   }
 
-  // ── 화면 렌더링
+  // ── 렌더링
   function render() {
     const q = document.getElementById('searchInput').value.toLowerCase();
     const filtered = members.filter(m =>
-      ['이름','전공','학번','전화번호','직장/직함'].some(k => (m[k]||'').toLowerCase().includes(q))
+      ['이름','전공','학번','전화번호','직장/직함'].some(k => (String(m[k]||'')).toLowerCase().includes(q))
     );
-
     document.getElementById('statTotal').textContent = members.length;
-    document.getElementById('statArch').textContent = members.filter(m => m['전공'] === '건축학과').length;
-    document.getElementById('statEng').textContent = members.filter(m => m['전공'] === '건축공학과').length;
-    document.getElementById('statOther').textContent = members.filter(m => !['건축학과','건축공학과'].includes(m['전공'])).length;
+    document.getElementById('statArch').textContent = members.filter(m=>m['전공']==='건축학과').length;
+    document.getElementById('statEng').textContent = members.filter(m=>m['전공']==='건축공학과').length;
+    document.getElementById('statOther').textContent = members.filter(m=>!['건축학과','건축공학과'].includes(m['전공'])).length;
     document.getElementById('headerCount').textContent = '전체 ' + members.length + '명';
-
+    document.getElementById('adminCol').style.display = isAdmin ? '' : 'none';
     document.getElementById('loadingState').style.display = 'none';
 
     if (filtered.length === 0) {
@@ -245,92 +263,161 @@
     } else {
       document.getElementById('emptyState').style.display = 'none';
       document.getElementById('mainTable').style.display = 'table';
-      document.getElementById('tableBody').innerHTML = filtered.map((m, i) => `
+      document.getElementById('tableBody').innerHTML = filtered.map((m,i) => `
         <tr>
           <td style="color:var(--muted);font-size:12px">${i+1}</td>
           <td>${m['이름']||''}</td>
           <td><span class="major-badge">${m['전공']||''}</span></td>
           <td style="color:var(--muted)">${m['학번']||''}</td>
           <td>${m['전화번호']||''}</td>
-          <td style="color:#444">${m['직장/직함'] || '<span style="color:#ccc">—</span>'}</td>
-          <td style="color:var(--muted)">${m['출생년도'] || '<span style="color:#ccc">—</span>'}</td>
+          <td style="color:#444">${m['직장/직함']||'<span style="color:#ccc">—</span>'}</td>
+          <td style="color:var(--muted)">${m['출생년도']||'<span style="color:#ccc">—</span>'}</td>
           <td style="color:var(--muted);font-size:12px">${m['등록일시']||''}</td>
+          <td style="display:${isAdmin?'':'none'};white-space:nowrap">
+            <button class="btn-sm btn-edit" onclick='openEdit(${JSON.stringify(m)})'>수정</button>
+            <button class="btn-sm btn-del" style="margin-left:4px" onclick="deleteMember('${m['이름']}','${m['학번']}')">삭제</button>
+          </td>
         </tr>`).join('');
     }
   }
 
   // ── 회원 등록
   async function addMember() {
-    const name    = document.getElementById('f_name').value.trim();
-    const sno     = document.getElementById('f_sno').value.trim();
-    const major   = document.getElementById('f_major').value;
-    const phone   = document.getElementById('f_phone').value.trim();
-    const company = document.getElementById('f_company').value.trim();
-    const birth   = document.getElementById('f_birth').value.trim();
-
-    if (!name || !sno || !major || !phone) {
-      showToast('⚠️ 이름, 학번, 전공, 전화번호는 필수입니다!');
-      return;
-    }
-
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.textContent = '등록 중...';
-
+    const name=document.getElementById('f_name').value.trim();
+    const sno=document.getElementById('f_sno').value.trim();
+    const major=document.getElementById('f_major').value;
+    const phone=document.getElementById('f_phone').value.trim();
+    const company=document.getElementById('f_company').value.trim();
+    const birth=document.getElementById('f_birth').value.trim();
+    if (!name||!sno||!major||!phone) { showToast('⚠️ 이름, 학번, 전공, 전화번호는 필수입니다!'); return; }
+    const btn=document.getElementById('submitBtn');
+    btn.disabled=true; btn.textContent='등록 중...';
     try {
-      await fetch(API, {
-        method: 'POST',
-        body: JSON.stringify({ name, sno, major, phone, company, birth }),
-      });
-      closeModal();
+      await fetch(API, {method:'POST', body:JSON.stringify({action:'add',name,sno,major,phone,company,birth})});
+      closeModal('overlayRegister');
       showToast('✅ ' + name + ' 동문이 등록되었습니다!');
       await loadMembers();
-    } catch(err) {
-      showToast('⚠️ 등록 중 오류가 발생했습니다.');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = '등 록 하 기';
-    }
+    } catch(e) { showToast('⚠️ 등록 중 오류가 발생했습니다.'); }
+    finally { btn.disabled=false; btn.textContent='등 록 하 기'; }
   }
 
-  // ── CSV 내보내기
-  function exportCSV() {
+  // ── 삭제
+  async function deleteMember(name, sno) {
+    if (!confirm(`"${name}" 동문을 정말 삭제하시겠습니까?`)) return;
+    const pw = sessionStorage.getItem('adminPw');
+    try {
+      const res = await fetch(API, {method:'POST', body:JSON.stringify({action:'delete',name,sno,pw})});
+      const data = await res.json();
+      if (data.result === '비밀번호 오류') { showToast('⚠️ 비밀번호 오류'); return; }
+      showToast('🗑️ 삭제되었습니다.');
+      await loadMembers();
+    } catch(e) { showToast('⚠️ 오류가 발생했습니다.'); }
+  }
+
+  // ── 수정 열기
+  function openEdit(m) {
+    document.getElementById('e_origName').value = m['이름'];
+    document.getElementById('e_origSno').value = m['학번'];
+    document.getElementById('e_name').value = m['이름'];
+    document.getElementById('e_sno').value = m['학번'];
+    document.getElementById('e_major').value = m['전공'];
+    document.getElementById('e_phone').value = m['전화번호'];
+    document.getElementById('e_company').value = m['직장/직함']||'';
+    document.getElementById('e_birth').value = m['출생년도']||'';
+    document.getElementById('overlayEdit').classList.add('active');
+  }
+
+  // ── 수정 저장
+  async function updateMember() {
+    const pw = sessionStorage.getItem('adminPw');
+    const origName=document.getElementById('e_origName').value;
+    const origSno=document.getElementById('e_origSno').value;
+    const name=document.getElementById('e_name').value.trim();
+    const sno=document.getElementById('e_sno').value.trim();
+    const major=document.getElementById('e_major').value;
+    const phone=document.getElementById('e_phone').value.trim();
+    const company=document.getElementById('e_company').value.trim();
+    const birth=document.getElementById('e_birth').value.trim();
+    if (!name||!sno||!major||!phone) { showToast('⚠️ 필수 항목을 입력해주세요.'); return; }
+    const btn=document.getElementById('editBtn');
+    btn.disabled=true; btn.textContent='저장 중...';
+    try {
+      await fetch(API, {method:'POST', body:JSON.stringify({action:'update',origName,origSno,name,sno,major,phone,company,birth,pw})});
+      closeModal('overlayEdit');
+      showToast('✅ 수정이 완료되었습니다!');
+      await loadMembers();
+    } catch(e) { showToast('⚠️ 수정 중 오류가 발생했습니다.'); }
+    finally { btn.disabled=false; btn.textContent='수 정 완 료'; }
+  }
+
+  // ── 관리자 로그인
+  function toggleAdminLogin() {
+    if (isAdmin) { logoutAdmin(); return; }
+    document.getElementById('overlayAdmin').classList.add('active');
+    setTimeout(()=>document.getElementById('adminPw').focus(), 100);
+  }
+
+  function doAdminLogin() {
+    const pw = document.getElementById('adminPw').value;
+    if (!pw) { showToast('⚠️ 비밀번호를 입력해주세요.'); return; }
+    sessionStorage.setItem('adminPw', pw);
+    isAdmin = true;
+    closeModal('overlayAdmin');
+    document.getElementById('adminPw').value = '';
+    document.getElementById('adminBar').classList.add('show');
+    document.getElementById('adminToggle').classList.add('active');
+    document.getElementById('adminToggle').textContent = '🔓 관리자 ON';
+    render();
+    showToast('🔓 관리자 모드가 활성화되었습니다.');
+  }
+
+  function logoutAdmin() {
+    isAdmin = false;
+    sessionStorage.removeItem('adminPw');
+    document.getElementById('adminBar').classList.remove('show');
+    document.getElementById('adminToggle').classList.remove('active');
+    document.getElementById('adminToggle').textContent = '🔐 관리자';
+    render();
+    showToast('🔐 관리자 모드 종료');
+  }
+
+  // ── 엑셀(CSV) 내보내기
+  function exportExcel() {
     if (members.length === 0) { showToast('⚠️ 내보낼 데이터가 없습니다.'); return; }
     const headers = ['이름','전공','학번','전화번호','직장/직함','출생년도','등록일시'];
-    const rows = members.map(m => headers.map(h => m[h]||''));
-    const csv = '\uFEFF' + [headers, ...rows].map(r => r.map(v => '"'+v+'"').join(',')).join('\n');
+    const rows = members.map(m => headers.map(h => String(m[h]||'')));
+    const csv = '\uFEFF' + [headers,...rows].map(r=>r.map(v=>'"'+v+'"').join(',')).join('\n');
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+    a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
     a.download = '홍익건축총동문회_주소록.csv';
     a.click();
-    showToast('📥 CSV 파일이 저장되었습니다!');
+    showToast('📥 엑셀 파일이 저장되었습니다!');
   }
 
-  function openModal() { document.getElementById('overlay').classList.add('active'); document.getElementById('f_name').focus(); }
-  function closeModal() {
-    document.getElementById('overlay').classList.remove('active');
-    ['f_name','f_sno','f_phone','f_company','f_birth'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('f_major').value = '';
-  }
-  function closeModalOutside(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
+  // ── 모달
+  function openModal(id) { document.getElementById('overlay'+id.charAt(0).toUpperCase()+id.slice(1)).classList.add('active'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+  function closeModalOutside(e,id) { if(e.target===document.getElementById(id)) closeModal(id); }
 
+  // ── 토스트
   function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg; t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
+    const t=document.getElementById('toast');
+    t.textContent=msg; t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),3000);
   }
 
   // 전화번호 자동 하이픈
-  document.getElementById('f_phone').addEventListener('input', function() {
-    let v = this.value.replace(/\D/g,'');
-    if (v.length <= 3) this.value = v;
-    else if (v.length <= 7) this.value = v.slice(0,3)+'-'+v.slice(3);
-    else this.value = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7,11);
+  ['f_phone','e_phone'].forEach(id=>{
+    document.getElementById(id).addEventListener('input',function(){
+      let v=this.value.replace(/\D/g,'');
+      if(v.length<=3)this.value=v;
+      else if(v.length<=7)this.value=v.slice(0,3)+'-'+v.slice(3);
+      else this.value=v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7,11);
+    });
   });
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') ['overlayRegister','overlayAdmin','overlayEdit'].forEach(closeModal); });
 
-  // 시작 시 데이터 로드
   loadMembers();
 </script>
 </body>
